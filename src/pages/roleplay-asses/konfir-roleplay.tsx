@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { FaChevronRight } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
 import { useRoleplayData } from "../../services/RoleplayService"; // Import the new service
 import { useState } from "react";
+import { Breadcrumb } from "../../components/reusable/BreadCrumbs";
 
 export const KonfirRoleplay: React.FC = () => {
   const { isLoading: isRoleplayLoading, isError: isRoleplayError } =
@@ -33,37 +33,20 @@ export const KonfirRoleplay: React.FC = () => {
     );
   }
 
+  const breadcrumbItems = [
+    {
+      label: "Beranda",
+      path: "/dashboard",
+    },
+    {
+      label: "Roleplay dan Assessmen",
+    },
+  ];
+
   return (
     <div className="w-screen flex flex-col md:pt-44 pt-24 md:pb-4 md:px-36 px-8 bg-gray-100">
       {/* Breadcrumb */}
-      <div className="bg-white w-full h-14 flex items-center pl-5 rounded-xl">
-        <Link to="/dashboard" className="flex items-center">
-          <img
-            src="/pelatihanku/home.png"
-            className="md:w-6 w-5 -mt-1 "
-            alt="Home"
-          />
-          <span className="md:pl-5 pl-3 text-blue-500 md:text-base text-sm font-semibold">
-            Beranda
-          </span>
-        </Link>
-        <FaChevronRight className="text-gray-300 mx-4" />
-        <span className="text-[#9CA3AF] md:text-base text-sm font-semibold">
-          Roleplay
-        </span>
-        <FaChevronRight className="text-gray-300 mx-4" />
-        <span className="text-[#9CA3AF] md:text-base text-sm font-semibold">
-          Pilih Roleplay
-        </span>
-        <FaChevronRight className="text-gray-300 mx-4" />
-        <span className="text-[#9CA3AF] md:text-base text-sm font-semibold">
-          Roleplay Kewirausahaan
-        </span>
-        <FaChevronRight className="text-gray-300 mx-4" />
-        <span className="text-[#9CA3AF] md:text-base text-sm font-semibold">
-          Detail Roleplay
-        </span>
-      </div>
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Header */}
       <div className="bg-white w-full h-6 flex items-center justify-between p-9 mt-5 rounded-xl mb-4">
@@ -77,14 +60,16 @@ export const KonfirRoleplay: React.FC = () => {
             <img
               src="\roleplay\profile.png" // Ganti dengan URL foto pengajar
               alt="Pengajar"
-              className="w-12 h-12 rounded-full mr-4"
+              className="w-12 h-12 rounded-full md:mr-4 mr-2"
             />
             <div>
-              <h2 className="text-xl font-semibold">Neneng Rohaye S.Kom</h2>
+              <h2 className="md:text-xl text-base font-semibold">
+                Neneng Rohaye S.Kom
+              </h2>
               <p className="text-gray-500 text-sm">Pengajar</p>
             </div>
           </div>
-          <span className="text-blue-500 bg-blue-100 text-sm px-2 h-7 py-1 rounded-lg">
+          <span className="text-blue-500 bg-blue-100 md:text-sm text-xs px-2 md:h-7 h-10 py-1 rounded-lg">
             Belum Mengumpulkan
           </span>
         </div>
@@ -184,13 +169,13 @@ export const KonfirRoleplay: React.FC = () => {
           <div className="flex mt-6">
             <Link
               to="/nilai-roleplay"
-              className="px-10 py-2 mr-6 text-sm text-gray-700 border border-gray-300 rounded-lg"
+              className="md:px-10 px-6 md:py-2 py-3  mr-6 text-sm text-gray-700 border border-gray-300 rounded-lg"
             >
               Nilai Rekan
             </Link>
             <Link
               to="/submit-roleplay"
-              className="px-10 py-2 text-sm text-white bg-blue-500 rounded-lg"
+              className="px-10 md:py-2 pt-3 text-sm text-white bg-blue-500 rounded-lg"
             >
               Kumpulkan
             </Link>

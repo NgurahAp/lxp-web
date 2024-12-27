@@ -1,6 +1,6 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaClock } from "react-icons/fa";
-import { useApiResponse } from "../../services/KonfirAsesService"; // Import the new service
+import { useRoleplayData } from "../../services/RoleplayService"; // Import the new service
 import { useState } from "react";
 import { Breadcrumb } from "../../components/reusable/BreadCrumbs";
 
@@ -77,7 +77,6 @@ import { Breadcrumb } from "../../components/reusable/BreadCrumbs";
  ];
 
 export const KonfirAses: React.FC = () => {  
-  
   const [selectedValues, setSelectedValues] = useState<Record<number, number>>({});
 
   const handleSelect = (rowId: number, value: number) => {
@@ -87,7 +86,7 @@ export const KonfirAses: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const { isLoading: isRoleplayLoading, isError: isRoleplayError } =
-    useApiResponse(); // Use the custom hook to fetch roleplay data
+    useRoleplayData(); // Use the custom hook to fetch roleplay data
 
   const [uploadedFile] = useState("roleplay_tim1.pdf");
   const [linkVideo, setLinkVideo] = useState(
